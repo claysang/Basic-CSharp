@@ -12,8 +12,8 @@ namespace BasicCSharp
             var defaultValueDemo = new DefaultValueDemoClass();
 
             // change the variable values of the following 2 lines to correct values
-            var expectedReferenceTypeValue = new RefTypeClass(default(int));
-            const int expectedValueTypeValue = 1;
+            var expectedReferenceTypeValue = (RefTypeClass)null;
+            const int expectedValueTypeValue = 0;
 
             Assert.Equal(expectedReferenceTypeValue, defaultValueDemo.referenceTypeValue);
             Assert.Equal(expectedValueTypeValue, defaultValueDemo.valueTypeValue);
@@ -23,10 +23,10 @@ namespace BasicCSharp
         public void should_get_default_value_using_default_operator()
         {
             // change the variable values of the following 4 lines to correct values.
-            const int expectedDefaultIntResult = 1;
-            const bool expectedDefaultBoolResult = true;
-            const char expectedDefaultCharResult = 'a';
-            var expectedDefaultObjectResult = new object();
+            const int expectedDefaultIntResult = 0;
+            const bool expectedDefaultBoolResult = false;
+            const char expectedDefaultCharResult = '\0';
+            var expectedDefaultObjectResult = (object)null;
 
             Assert.Equal(expectedDefaultIntResult, default(int));
             Assert.Equal(expectedDefaultBoolResult, default(bool));
@@ -40,7 +40,7 @@ namespace BasicCSharp
             int passingInt = 1;
 
             // change the variable value to correct one.
-            const int expectedResult = 2;
+            const int expectedResult = 1;
 
             FunctionPassingIntAsArgument(passingInt);
 
@@ -54,7 +54,7 @@ namespace BasicCSharp
             RefTypeClass modifiedRefTypeObject = FunctionPassingRefTypeClassAsArgument(refTypeObject);
 
             // change the variable value to correct one.
-            RefTypeClass expectedResult = modifiedRefTypeObject;
+            RefTypeClass expectedResult = refTypeObject;
 
             Assert.Same(expectedResult, refTypeObject);
         }
@@ -65,7 +65,7 @@ namespace BasicCSharp
             int passingInt = 1;
 
             // change the variable value to correct one.
-            const int expectedResult = 1;
+            const int expectedResult = 2;
 
             FunctionPassingRefIntAsArgument(ref passingInt);
 
@@ -82,7 +82,7 @@ namespace BasicCSharp
                 ref refTypeObject);
 
             // change the variable value to correct one
-            object expectedResult = refToOriginalObject;
+            object expectedResult = modifiedRefTypeObject;
 
             Assert.Same(expectedResult, refTypeObject);
         }
@@ -95,7 +95,7 @@ namespace BasicCSharp
             FunctionPassingOutIntAsArgument(out passingInt);
 
             // change the variable value to correct one
-            const int expectedResult = default(int);
+            const int expectedResult = 2;
 
             Assert.Equal(expectedResult, passingInt);
         }
@@ -109,7 +109,7 @@ namespace BasicCSharp
                 FunctionPassingOutRefTypeClassAsArgument(out refTypeObject);
 
             // change the variable value to correct one
-            object expectedResult = default(object);
+            object expectedResult = modifiedRefTypeObject;
 
             Assert.Equal(expectedResult, refTypeObject);
         }
@@ -120,7 +120,7 @@ namespace BasicCSharp
             int sum = PassVariableLengthArguments(1, 2, 3, 4, 5);
 
             // change the variable value to correct one
-            const int expectedResult = default(int);
+            const int expectedResult = 15;
 
             Assert.Equal(expectedResult, sum);
         }
@@ -131,7 +131,7 @@ namespace BasicCSharp
             int optionalParameterValue = PassAsOptionalArgument();
 
             // change the variable value to correct one
-            const int expectedResult = default(int);
+            const int expectedResult = 23;
 
             Assert.Equal(expectedResult, optionalParameterValue);
         }
